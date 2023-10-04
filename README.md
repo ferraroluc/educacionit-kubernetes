@@ -1,9 +1,3 @@
 # Educación IT - Kubernetes
 
-## Aplicación propia
-
-Manifiesto de Kubernetes de aplicación propia llamada **flask-hello-world** tomada del repositorio https://github.com/ferraroluc/educacionit-docker-flask.
-
-## Ejemplos de manifiestos
-
-Se agregan ejemplos de manifiestos de Kubernetes para probar funcionalidades y tipos de recursos en un clúster.
+En este repositorio se encuentran una serie de ejemplos para probar recursos de Kubernetes dentro de un clúster de Minikube. Principalmente se trabaja con la imágen de Nginx y con una aplicación propia llamada **flask-hello-world** tomada del repositorio https://github.com/ferraroluc/educacionit-docker-flask.

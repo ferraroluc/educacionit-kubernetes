@@ -1,4 +1,30 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: flask-hello-world-pv
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/flask-hello-world"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: flask-hello-world-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
 kind: Pod
 metadata:
   name: flask-hello-world-pod
@@ -8,3 +34,10 @@ spec:
       image: ferraroluc/flask-hello-world:latest
       ports:
         - containerPort: 5000
+      volumeMounts:
+        - name: flask-hello-world-volume
+          mountPath: "/data"
+  volumes:
+    - name: flask-hello-world-volume
+      persistentVolumeClaim:
+        claimName: flask-hello-world-pvc
