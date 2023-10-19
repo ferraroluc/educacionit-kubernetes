@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: nginx-cronjob
+  name: hello-cronjob
 spec:
   schedule: "* */1 * * *"
   jobTemplate:
@@ -9,6 +9,6 @@ spec:
       template:
         spec:
           containers:
-            - name: nginx-container
-              image: nginx:latest
+            - name: hello-container
+              image: hello-world:latest
           restartPolicy: OnFailure
