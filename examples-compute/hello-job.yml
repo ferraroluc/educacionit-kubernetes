@@ -6,6 +6,6 @@ spec:
   template:
     spec:
       containers:
-        - name: hello-container
-          image: hello-world:latest
+        - image: hello-world:latest
+          name: hello-container
       restartPolicy: Never

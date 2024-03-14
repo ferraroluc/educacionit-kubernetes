@@ -3,12 +3,12 @@ kind: CronJob
 metadata:
   name: hello-cronjob
 spec:
-  schedule: "* */1 * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-            - name: hello-container
-              image: hello-world:latest
+            - image: hello-world:latest
+              name: hello-container
           restartPolicy: OnFailure
+  schedule: "* */1 * * *" #every minute

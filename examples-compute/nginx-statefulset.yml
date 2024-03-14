@@ -7,21 +7,23 @@ spec:
   selector:
     matchLabels:
       app: nginx
+  serviceName: nginx
   template:
     metadata:
       labels:
         app: nginx
     spec:
       containers:
-        - name: nginx-container
-          image: nginx:latest
+        - image: nginx:latest
+          name: nginx-container
           ports:
             - containerPort: 80
   volumeClaimTemplates:
     - metadata:
         name: nginx-data
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes:
+          - ReadWriteOnce
         resources:
           requests:
             storage: 10Gi

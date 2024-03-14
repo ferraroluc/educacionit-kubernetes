@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+data:
+  message: Hello!
+kind: ConfigMap
+metadata:
+  name: envs-configmap
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envs-pod
+spec:
+  containers:
+    - env:
+        - name: EXAMPLE
+          valueFrom:
+            configMapKeyRef:
+              key: message
+              name: envs-configmap
+      image: ferraroluc/envs:latest
+      name: envs-container
