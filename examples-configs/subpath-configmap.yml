@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-hello-world-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-hello-world
+  template:
+    metadata:
+      labels:
+        app: flask-hello-world
+    spec:
+      containers:
+        - image: ferraroluc/flask-hello-world:latest
+          name: flask-hello-world-container
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config.py
+              subPath: config.py
+      volumes:
+        - name: config-volume
+          configMap:
+            name: app-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  config.py: |
+    DATABASE_URL = "postgresql://user:password@localhost:5432/flask_db"
+    SECRET_KEY = "your-secret-key-here"
+    DEBUG = False
+    FLASK_ENV = "production"
+    LOG_LEVEL = "INFO"
